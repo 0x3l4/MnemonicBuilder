@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MnemonicBuilder.Application.Words.Queries;
 using MnemonicBuilder.Data;
+using MnemonicBuilder.Domain.Interfaces;
+using MnemonicBuilder.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddScoped<IWordRepository>(provider => 
+    new TextFileWordRepository(Path.Combine(builder.Environment.WebRootPath, "data", "all_russian_words.txt")));
+
+builder.Services.AddScoped<SearchWordsByPatternHandler>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();

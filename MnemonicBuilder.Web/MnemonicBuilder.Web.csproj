@@ -20,11 +20,11 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MnemonicBuilder.Application\MnemonicBuilder.Application.csproj" />
+    <ProjectReference Include="..\MnemonicBuilder.Infrastructure\MnemonicBuilder.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

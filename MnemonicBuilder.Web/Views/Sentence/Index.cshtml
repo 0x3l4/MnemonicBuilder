@@ -1,9 +1,10 @@
-﻿
+﻿@model MnemonicBuilder.Web.Models.ResultWordsViewModel
+
 @{
-    ViewData["Title"] = "Мои предложения";
+	ViewData["Title"] = "Создать предложение";
 }
 
-<form>
+<form method="post">
 	<div class="row justify-content-center">
 		<h2 class="text-center">Строитель предложения</h2>
 		<div class="col-md-6 col-lg-5 col-xxl-4">
@@ -13,9 +14,9 @@
 			<div class="row">
 				<div class="align-items-center">
 					<div class="col-md-12 p-1 input-group">
-						<input type="text" name="regexp-input" value="" placeholder="Введите регулярное выражение"
-							   aria-describedby="search-button" class="form-control" aria-label="Введите регулярное выражение" />
-						<button id="search-button" type="button" class="btn btn-primary px-3"><i class="bi bi-search"></i></button>
+						<input type="text" asp-for="Pattern" placeholder="Введите регулярное выражение"
+						aria-describedby="search-button" class="form-control" aria-label="Введите регулярное выражение" />
+						<button id="search-button" type="submit" class="btn btn-primary px-3"><i class="bi bi-search"></i></button>
 					</div>
 				</div>
 			</div>
@@ -31,9 +32,16 @@
 				<div class="col-12">
 					<label for="words-select">Select list (select one):</label>
 					<select class="form-control" id="sel1">
-						@for (int i = 0; i < 10; i++)
+						@if (Model != null)
 						{
-							<option>@i</option>
+							foreach (var word in Model.Words)
+							{
+								<option>@word</option>
+							}
+						}
+						else
+						{
+							<option selected disabled>--Не Найдно--</option>
 						}
 					</select>
 				</div>
