@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MnemonicBuilder.Models;
+using MnemonicBuilder.Web.Models;
 
-namespace MnemonicBuilder.Controllers
+namespace MnemonicBuilder.Web.Controllers
 {
     public class HomeController : Controller
     {

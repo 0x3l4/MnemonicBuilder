@@ -1,4 +1,4 @@
-namespace MnemonicBuilder.Models
+namespace MnemonicBuilder.Web.Models
 {
     public class ErrorViewModel
     {

@@ -13,7 +13,6 @@
 			</p>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 				<button type="button" class="btn btn-primary btn-lg px-4 gap-3">Начать бесплатно</button>
-				@* <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button> *@
 			</div>
 		</div>
 	</div>
@@ -52,7 +51,7 @@
 	</div>
 
 	<div class="col-12">
-		<section class="cta">
+		<section>
 			<h2>Готовы попробовать?</h2>
 			<form>
 				<input type="text" placeholder="Введите слово...">
@@ -71,28 +70,28 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="~/images/Банное.JPG" class="d-block w-100" alt="">
+					<img src="~/images/languages.png" class="d-block w-100" alt="">
 					<div class="carousel-caption d-none d-sm-block">
 						<h5>Орфография</h5>
 						<p>Падежи, ударения, слоги</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="~/images/Компьютер.JPG" class="d-block w-100" alt="">
+					<img src="~/images/hobby.png" class="d-block w-100" alt="">
 					<div class="carousel-caption d-none d-sm-block">
 						<h5>Наше окружение</h5>
 						<p>Цвета радуги, планеты, </p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="~/images/Барсик.JPG" class="d-block w-100" alt="">
+					<img src="~/images/math.png" class="d-block w-100" alt="">
 					<div class="carousel-caption d-none d-sm-block">
 						<h5>Точные науки</h5>
 						<p>Математические константы, геометрия</p>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="~/images/vampire_survivors_1.jpg" class="d-block w-100" alt="">
+					<img src="~/images/hobby.png" class="d-block w-100" alt="">
 					<div class="carousel-caption d-none d-sm-block">
 						<h5>Хобби</h5>
 						<p>Сборка Кубика Рубика вслепую, шахматы</p>
@@ -119,4 +118,8 @@
 		&copy; 2025 - Строитель мнемонических предложений
 	</div>
 </footer>
+
+@section Scripts {
+	{ <partial name="_ValidationScriptsPartial"></partial> }
+}
 

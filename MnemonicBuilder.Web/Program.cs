@@ -1,16 +1,22 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.Extensions.DependencyInjection;
+
+//using Microsoft.EntityFrameworkCore;
 using MnemonicBuilder.Application.Words.Queries;
-using MnemonicBuilder.Data;
 using MnemonicBuilder.Domain.Interfaces;
 using MnemonicBuilder.Infrastructure.Repositories;
+using MnemonicBuilder.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseNpgsql(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IWordRepository>(provider => 
     new TextFileWordRepository(Path.Combine(builder.Environment.WebRootPath, "data", "all_russian_words.txt")));
@@ -19,6 +25,7 @@ builder.Services.AddScoped<SearchWordsByPatternHandler>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
