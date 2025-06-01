@@ -10,6 +10,7 @@ using MnemonicBuilder.Domain.Interfaces;
 using MnemonicBuilder.Infrastructure.Repositories;
 using MnemonicBuilder.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using MnemonicBuilder.Infrastructure.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +24,23 @@ builder.Services.AddScoped<IWordRepository>(provider =>
 
 builder.Services.AddScoped<SearchWordsByPatternHandler>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
 
 builder.Services.AddControllersWithViews();
 
