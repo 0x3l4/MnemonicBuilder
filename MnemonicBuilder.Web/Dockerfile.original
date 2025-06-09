@@ -13,10 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["MnemonicBuilder.Web/MnemonicBuilder.Web.csproj", "MnemonicBuilder.Web/"]
-COPY ["MnemonicBuilder.Application/MnemonicBuilder.Application.csproj", "MnemonicBuilder.Application/"]
-COPY ["MnemonicBuilder.Domain/MnemonicBuilder.Domain.csproj", "MnemonicBuilder.Domain/"]
-COPY ["MnemonicBuilder.Infrastructure/MnemonicBuilder.Infrastructure.csproj", "MnemonicBuilder.Infrastructure/"]
-RUN dotnet restore "./MnemonicBuilder.Web/MnemonicBuilder.Web.csproj"
+RUN dotnet restore "./MnemonicBuilder/MnemonicBuilder.csproj"
 COPY . .
 WORKDIR "/src/MnemonicBuilder.Web"
 RUN dotnet build "./MnemonicBuilder.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
