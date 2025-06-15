@@ -1,0 +1,49 @@
+﻿@model System.Collections.Generic.List<MnemonicBuilder.Web.ViewModels.SentenceViewModel>
+
+@{
+	ViewData["Title"] = "Мои предложения";
+}
+
+<div class="container">
+	<div class="row">
+		@foreach (var sentence in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
+		{
+			<div class="col-sm-6 col-md-4 col-lg-3 my-2">
+				<div class="card border-info shadow">
+					<div class="card-header">
+						<span class="text-muted">Обновлено: @DateTime.Now.ToShortDateString()</span>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Предложение для запоминания чего-либо @sentence</h5>
+						<p class="card-text">
+							Пример предложения, созданного юзером
+						</p>
+					</div>
+					<div class="card-footer btn-group">
+						<a asp-route-Id="@sentence" asp-action="Edit" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></a>
+						<a asp-route-Id="@sentence" asp-action="Delete" class="btn btn-outline-danger"><i class="bi bi-trash3"></i></a>
+					</div>
+				</div>
+			</div>
+		}
+		<div class="col-sm-6 col-md-4 col-lg-3 my-2">
+			<div class="card border-info">
+				<div class="card-header">
+					<span class="text-muted">Обновлено: @DateTime.Now.ToShortDateString()</span>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">Предложение для запоминания цветов радуги</h5>
+					<p class="card-text">
+						Каждый Охотник Желает Знать Где Сидит Фазан
+					</p>
+				</div>
+				<div class="card-footer btn-group">
+					<a href="#" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></a>
+					<a href="#" class="btn btn-outline-danger"><i class="bi bi-trash3"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,22 @@
+:root {
+
+}
+
+html {
+  font-size: 14px;
+}
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.content-background {
+    background-color: #c3f8ff;
+}
+
+.carousel-item {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}

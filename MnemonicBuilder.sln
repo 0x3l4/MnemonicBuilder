@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MnemonicBuilder", "MnemonicBuilder\MnemonicBuilder.csproj", "{0759A316-CC38-4C86-85D8-944336110A79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MnemonicBuilder.Web", "MnemonicBuilder.Web\MnemonicBuilder.Web.csproj", "{0759A316-CC38-4C86-85D8-944336110A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MnemonicBuilder.Domain", "MnemonicBuilder.Domain\MnemonicBuilder.Domain.csproj", "{18F1C078-8388-4D0F-B4CD-FB3C0EAE1D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MnemonicBuilder.Application", "MnemonicBuilder.Application\MnemonicBuilder.Application.csproj", "{C69D2827-8C6C-4576-B5A3-D9EAB9FBA1F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MnemonicBuilder.Infrastructure", "MnemonicBuilder.Infrastructure\MnemonicBuilder.Infrastructure.csproj", "{71681FDE-D8F3-45A8-8F42-0849F5E32D28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{0759A316-CC38-4C86-85D8-944336110A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0759A316-CC38-4C86-85D8-944336110A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0759A316-CC38-4C86-85D8-944336110A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F1C078-8388-4D0F-B4CD-FB3C0EAE1D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F1C078-8388-4D0F-B4CD-FB3C0EAE1D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F1C078-8388-4D0F-B4CD-FB3C0EAE1D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F1C078-8388-4D0F-B4CD-FB3C0EAE1D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C69D2827-8C6C-4576-B5A3-D9EAB9FBA1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C69D2827-8C6C-4576-B5A3-D9EAB9FBA1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C69D2827-8C6C-4576-B5A3-D9EAB9FBA1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C69D2827-8C6C-4576-B5A3-D9EAB9FBA1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71681FDE-D8F3-45A8-8F42-0849F5E32D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71681FDE-D8F3-45A8-8F42-0849F5E32D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71681FDE-D8F3-45A8-8F42-0849F5E32D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71681FDE-D8F3-45A8-8F42-0849F5E32D28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

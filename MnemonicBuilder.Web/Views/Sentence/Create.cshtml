@@ -1,0 +1,78 @@
+﻿@model MnemonicBuilder.Web.ViewModels.SentenceViewModel
+
+@{
+	ViewData["Title"] = "Создать предложение";
+}
+<div class="container">
+	<form asp-controller="Sentence" method="post">
+		<div class="row justify-content-center">
+			<h2 class="text-center">Строитель предложения</h2>
+			<div class="col-md-6 col-lg-5 col-xxl-4">
+				<textarea type="text" name="sentence" value="" class="form-control h-100" rows="5"></textarea>
+			</div>
+			<div class="col-md-6 col-lg-5 col-xxl-4">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+							<button type="button" class="page-link" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</button>
+						</li>
+						<li class="page-item"><button type="button" class="page-link">1</button></li>
+						<li class="page-item"><button type="button" class="page-link">2</button></li>
+						<li class="page-item"><button type="button" class="page-link">3</button></li>
+						<li class="page-item">
+							<button type="button" class="page-link" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</button>
+						</li>
+					</ul>
+				</nav>
+				<div style="margin-bottom: 1rem;">
+					<input type="text" id="patternInput" placeholder="Введите регулярное выражение" />
+					<button onclick="startSearch()">🔍 Поиск</button>
+				</div>
+
+				<div id="resultsContainer"></div>
+
+				<div id="paginationControls" style="margin-top: 1rem; display: none;">
+					<button onclick="goToPage(1)">⏮ Первая</button>
+					<button onclick="goToPage(currentPage - 1)">◀ Назад</button>
+					<span id="pageInfo">Страница 1</span>
+					<button onclick="goToPage(currentPage + 1)">Вперёд ▶</button>
+				</div>
+
+				<div class="row">
+					<div class="align-items-center">
+						<label for="Pattern" class="px-1">Регулярное выражение</label>
+						<div class="col-md-12 p-1 input-group">
+							<input type="text" asp-for="Pattern" placeholder="Введите регулярное выражение"
+								   aria-describedby="search-button" class="form-control" aria-label="Введите регулярное выражение" />
+							<button id="search-button" type="submit" class="btn btn-primary px-3"><i class="bi bi-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-10 col-xxl-8">
+				<h2 class="text-center">Описание предложения</h2>
+				<div class="mb-3">
+					<label for="sentence-name" class="form-label">Название</label>
+					<input type="text" class="form-control" id="sentence-name">
+				</div>
+				<div class="mb-3">
+					<label for="sentence" class="form-label">Описание</label>
+					<textarea type="text" name="sentence" value="" class="form-control" rows="4"></textarea>
+				</div>
+				<div class="mb-3 form-check">
+					<input type="checkbox" class="form-check-input" id="privacy-check" checked>
+					<label class="form-check-label" for="privacy-check">Видно остальным пользователям</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Готово</button>
+				<button type="button" class="btn btn-danger">Очистить</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+
