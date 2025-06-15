@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MnemonicBuilder.Web.Models
+namespace MnemonicBuilder.Web.ViewModels
 {
     public class VerifyEmailViewModel
     {

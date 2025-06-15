@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MnemonicBuilder.Domain.Entities;
 
 namespace MnemonicBuilder.Domain.Interfaces
 {
-    public interface IWordRepository
+    public interface IWordSearchService
     {
-        IAsyncEnumerable<string> GetAllWordsAsync();
+        Task<WordMatchResult> SearchWordsAsync(string pattern);
     }
 }

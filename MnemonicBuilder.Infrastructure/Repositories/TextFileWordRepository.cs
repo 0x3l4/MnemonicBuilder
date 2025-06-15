@@ -16,16 +16,15 @@ namespace MnemonicBuilder.Infrastructure.Repositories
             _filePath = filePath;
         }
 
-        public async Task<IEnumerable<string>> GetAllWordsAsync()
+        public async IAsyncEnumerable<string> GetAllWordsAsync()
         {
-            if (!File.Exists(_filePath))
+            using var reader = File.OpenText(_filePath);
+            while (!reader.EndOfStream)
             {
-                return Enumerable.Empty<string>();
+                var line = await reader.ReadLineAsync();
+                if (line != null)
+                    yield return line;
             }
-
-            var lines = await File.ReadAllLinesAsync(_filePath);
-
-            return lines;
         }
     }
 }

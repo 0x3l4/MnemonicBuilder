@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MnemonicBuilder.Web.Models
+namespace MnemonicBuilder.Web.ViewModels
 {
     public class LoginViewModel
     {

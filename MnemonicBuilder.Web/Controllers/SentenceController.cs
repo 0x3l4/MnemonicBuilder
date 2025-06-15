@@ -1,21 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MnemonicBuilder.Application.Words.Queries;
-using MnemonicBuilder.Web.Models;
+using MnemonicBuilder.Web.ViewModels;
 
 namespace MnemonicBuilder.Web.Controllers
 {
     public class SentenceController : Controller
     {
-        private readonly SearchWordsByPatternHandler _handler;
-
-        public SentenceController(SearchWordsByPatternHandler handler)
-        {
-            _handler = handler;
-        }
-
-        
-
         [HttpGet]
         public IActionResult Index()
         {
@@ -25,15 +15,16 @@ namespace MnemonicBuilder.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string pattern)
         {
-            var result = await _handler.Handle(new SearchWordsByPatternQuery(pattern));
+            //var result = await _handler.Handle(new SearchWordsByPatternQuery(pattern));
 
-            SentenceViewModel resultWords = new SentenceViewModel
-            {
-                Pattern = pattern,
-                Words = result
-            };
+            //SentenceViewModel resultWords = new SentenceViewModel
+            //{
+            //    Pattern = pattern,
+            //    Words = result
+            //};
 
-            return View(resultWords);
+            //return View(resultWords);
+            return View();
         }
 
         [HttpGet]
@@ -55,11 +46,11 @@ namespace MnemonicBuilder.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Search(string pattern)
-        {
-             return View();
-        }
+        //[HttpPost]
+        //public IActionResult Search([FromBody] Regex)
+        //{
+        //     return View();
+        //}
 
         [HttpPost]
         public IActionResult Save()

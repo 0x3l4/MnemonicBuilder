@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MnemonicBuilder.Infrastructure.Entities;
-using MnemonicBuilder.Web.Models;
+using MnemonicBuilder.Web.ViewModels;
 
 namespace MnemonicBuilder.Web.Controllers
 {

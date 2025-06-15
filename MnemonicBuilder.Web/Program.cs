@@ -1,16 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.Extensions.DependencyInjection;
+using MnemonicBuilder.Application.Services;
+
+using MnemonicBuilder.Domain.Interfaces;
+
 
 //using Microsoft.EntityFrameworkCore;
-using MnemonicBuilder.Application.Words.Queries;
-using MnemonicBuilder.Domain.Interfaces;
-using MnemonicBuilder.Infrastructure.Repositories;
 using MnemonicBuilder.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using MnemonicBuilder.Infrastructure.Entities;
+using MnemonicBuilder.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +17,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddScoped<IWordRepository>(provider => 
-    new TextFileWordRepository(Path.Combine(builder.Environment.WebRootPath, "data", "all_russian_words.txt")));
 
-builder.Services.AddScoped<SearchWordsByPatternHandler>();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IWordSearchService, WordSearchService>();
+builder.Services.AddScoped<IWordRepository>(sp =>
+{
+    var filePath = Path.Combine(builder.Environment.ContentRootPath, "data", "all_russian_words.txt");
+    return new TextFileWordRepository(filePath);
+});
+builder.Services.AddSingleton<WordSearchCacheService>();
+//builder.Services.AddScoped<IWordRepository>(provider => 
+//    new TextFileWordRepository(Path.Combine(builder.Environment.WebRootPath, "data", "all_russian_words.txt")));
+
+//builder.Services.AddScoped<SearchWordsByPatternHandler>();
 
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //    .AddEntityFrameworkStores<ApplicationDbContext>();

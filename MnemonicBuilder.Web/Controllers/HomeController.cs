@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MnemonicBuilder.Web.Models;
+using MnemonicBuilder.Web.ViewModels;
 
 namespace MnemonicBuilder.Web.Controllers
 {
