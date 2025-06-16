@@ -1,29 +1,22 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MnemonicBuilder.Application.Services;
 using MnemonicBuilder.Web.ViewModels;
 
 namespace MnemonicBuilder.Web.Controllers
 {
     public class SentenceController : Controller
     {
+        private readonly WordSearchService _wordService;
+
+        public SentenceController(WordSearchService wordService)
+        {
+            _wordService = wordService;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(string pattern)
-        {
-            //var result = await _handler.Handle(new SearchWordsByPatternQuery(pattern));
-
-            //SentenceViewModel resultWords = new SentenceViewModel
-            //{
-            //    Pattern = pattern,
-            //    Words = result
-            //};
-
-            //return View(resultWords);
             return View();
         }
 
@@ -46,11 +39,29 @@ namespace MnemonicBuilder.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Search([FromBody] Regex)
-        //{
-        //     return View();
-        //}
+        // AJAX-экшен для поиска и пагинации (возвращает частичное представление)
+        [HttpGet]
+        public IActionResult Search(string pattern, int page = 1)
+        {
+            if (string.IsNullOrWhiteSpace(pattern))
+                return BadRequest("Регулярное выражение не задано.");
+
+            const int pageSize = 30;
+            var (words, total) = _wordService.Search(pattern, page);
+
+            Console.WriteLine($"Количество найденных слов: {words.Count}");
+
+            var model = new WordSearchViewModel
+            {
+                Pattern = pattern,
+                Words = words,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalCount = total
+            };
+            return PartialView("_SearchResults", model);
+        }
+
 
         [HttpPost]
         public IActionResult Save()

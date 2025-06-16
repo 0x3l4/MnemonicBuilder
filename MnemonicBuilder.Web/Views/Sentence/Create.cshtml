@@ -28,19 +28,6 @@
 						</li>
 					</ul>
 				</nav>
-				<div style="margin-bottom: 1rem;">
-					<input type="text" id="patternInput" placeholder="Введите регулярное выражение" />
-					<button onclick="startSearch()">🔍 Поиск</button>
-				</div>
-
-				<div id="resultsContainer"></div>
-
-				<div id="paginationControls" style="margin-top: 1rem; display: none;">
-					<button onclick="goToPage(1)">⏮ Первая</button>
-					<button onclick="goToPage(currentPage - 1)">◀ Назад</button>
-					<span id="pageInfo">Страница 1</span>
-					<button onclick="goToPage(currentPage + 1)">Вперёд ▶</button>
-				</div>
 
 				<div class="row">
 					<div class="align-items-center">
@@ -72,7 +59,48 @@
 			</div>
 		</div>
 	</form>
+	<h1>Поиск слов по регулярному выражению</h1>
+
+				<div class="container mt-3">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="input-group mb-3">
+								<input id="patternInput" type="text" class="form-control"
+									   placeholder="Введите регулярное выражение">
+								<button id="searchBtn" class="btn btn-primary">Поиск</button>
+							</div>
+						</div>
+					</div>
+					<div id="resultsContainer"></div> <!-- Здесь появятся результаты -->
+				</div>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+	// При нажатии кнопки «Поиск» грузим страницу 1
+	$(document).ready(function() {
+		$("#searchBtn").click(function() {
+			loadPage(1);
+		});
+		// Обработчик клика по ссылкам пагинации внутри контейнера
+		$("#resultsContainer").on("click", ".page-link", function(e) {
+			e.preventDefault();
+			var page = $(this).data("page");
+			if (page) { loadPage(page); }
+		});
+	});
+
+	// Функция для AJAX-запроса страницы результатов
+	function loadPage(page) {
+		console.log("Загрузка данных!");
+		console.log("Страница: " + page);
+		var pattern = $("#patternInput").val();
+		$.get('/Sentence/Search', { pattern: pattern, page: page })
+		 .done(function(data) {
+			$("#resultsContainer").html(data); // вставляем полученный HTML
+		 });
+	}
+</script>
 
 
 

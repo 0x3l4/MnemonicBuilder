@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MnemonicBuilder.Application.Services;
-
 using MnemonicBuilder.Domain.Interfaces;
+
+
 
 
 //using Microsoft.EntityFrameworkCore;
@@ -18,21 +19,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddMemoryCache();
-builder.Services.AddScoped<IWordSearchService, WordSearchService>();
 builder.Services.AddScoped<IWordRepository>(sp =>
 {
-    var filePath = Path.Combine(builder.Environment.ContentRootPath, "data", "all_russian_words.txt");
-    return new TextFileWordRepository(filePath);
+    var filePath = Path.Combine(builder.Environment.WebRootPath, "data", "filtered_all_russian_words.txt");
+    return new FileWordRepository(filePath);
 });
-builder.Services.AddSingleton<WordSearchCacheService>();
-//builder.Services.AddScoped<IWordRepository>(provider => 
-//    new TextFileWordRepository(Path.Combine(builder.Environment.WebRootPath, "data", "all_russian_words.txt")));
+builder.Services.AddScoped<WordSearchService>();
 
-//builder.Services.AddScoped<SearchWordsByPatternHandler>();
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
@@ -47,7 +40,6 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
-
 
 builder.Services.AddControllersWithViews();
 
