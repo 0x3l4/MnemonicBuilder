@@ -12,21 +12,6 @@ namespace MnemonicBuilder.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string pattern)
-        {
-            //var result = await _handler.Handle(new SearchWordsByPatternQuery(pattern));
-
-            //SentenceViewModel resultWords = new SentenceViewModel
-            //{
-            //    Pattern = pattern,
-            //    Words = result
-            //};
-
-            //return View(resultWords);
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Create()
         {

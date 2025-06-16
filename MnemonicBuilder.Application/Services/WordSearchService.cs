@@ -2,43 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MnemonicBuilder.Domain.Entities;
 using MnemonicBuilder.Domain.Interfaces;
 
 namespace MnemonicBuilder.Application.Services
 {
-    public class WordSearchService : IWordSearchService
+    public class WordSearchService
     {
-        private readonly IWordRepository _repository;
+        private readonly IWordRepository _repo;
+        private const int PageSize = 30;
 
-        public WordSearchService(IWordRepository repository)
+        public WordSearchService(IWordRepository repo)
         {
-            _repository = repository;
+            _repo = repo;
         }
 
-        public async Task<WordMatchResult> SearchWordsAsync(string pattern)
+        // Выполняет поиск по регулярному выражению pattern на запрошенной странице.
+        public (List<string> Words, int TotalCount) Search(string pattern, int page = 1)
         {
-            var result = new WordMatchResult();
-            Regex regex;
+            if (string.IsNullOrWhiteSpace(pattern))
+                return (new List<string>(), 0);
 
-            try
-            {
-                regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
-            }
-            catch
-            {
-                throw new ArgumentException("Некорректное регулярное выражение.");
-            }
-
-            await foreach (var word in _repository.GetAllWordsAsync())
-            {
-                if (regex.IsMatch(word))
-                    result.Words.Add(word);
-            }
-
-            return result;
+            int skip = (page - 1) * PageSize;
+            // Получаем общее количество совпадений
+            int total = _repo.CountWords(pattern);
+            // Получаем слова для текущей страницы
+            var results = _repo.SearchWords(pattern, skip, PageSize).ToList();
+            return (results, total);
         }
     }
 }

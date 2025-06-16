@@ -8,6 +8,8 @@ namespace MnemonicBuilder.Domain.Interfaces
 {
     public interface IWordRepository
     {
-        IAsyncEnumerable<string> GetAllWordsAsync();
+        IEnumerable<string> SearchWords(string pattern, int skip, int take);
+
+        int CountWords(string pattern);
     }
 }
