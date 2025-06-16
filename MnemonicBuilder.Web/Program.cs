@@ -28,8 +28,6 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-IWebHostEnvironment
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

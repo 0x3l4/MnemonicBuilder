@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MnemonicBuilder.Domain\MnemonicBuilder.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

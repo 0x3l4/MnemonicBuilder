@@ -31,11 +31,6 @@ namespace MnemonicBuilder.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Search([FromBody] Regex)
-        //{
-        //     return View();
-        //}
 
         [HttpPost]
         public IActionResult Save()
