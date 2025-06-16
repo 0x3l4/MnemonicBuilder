@@ -1,11 +1,6 @@
 ﻿@model WordSearchViewModel
 
 @if (Model.Words != null && Model.Words.Any()) {
-@*     <ul class="list-group">
-    @foreach (var word in Model.Words) {
-        <li class="list-group-item">@word</li>
-    }
-    </ul> *@
     int totalPages = (int)Math.Ceiling((double)Model.TotalCount / Model.PageSize);
     int maxPagesToShow = 7;
     int currentPage = Model.CurrentPage;
@@ -50,25 +45,10 @@
                 <button type="button" class="btn btn-outline-success w-100">
                     @word
                 </button>
-                @*                 <div class="border rounded p-2 text-center">
-                    @word
-                </div> *@
             </div>
         }
     </div>
 
-    @* Постраничная навигация *@
-    
-
-@*     <nav>
-      <ul class="pagination mt-3">
-        @for (int i = 1; i <= totalPages; i++) {
-            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-              <a href="#" class="page-link" data-page="@i">@i</a>
-            </li>
-        }
-      </ul>
-    </nav> *@
     <nav>
         <ul class="pagination mt-3 flex-wrap">
             <li class="page-item @(currentPage == 1 ? "d-none" : "")">
