@@ -1,0 +1,96 @@
+﻿@model WordSearchViewModel
+
+@if (Model.Words != null && Model.Words.Any()) {
+@*     <ul class="list-group">
+    @foreach (var word in Model.Words) {
+        <li class="list-group-item">@word</li>
+    }
+    </ul> *@
+    int totalPages = (int)Math.Ceiling((double)Model.TotalCount / Model.PageSize);
+    int maxPagesToShow = 7;
+    int currentPage = Model.CurrentPage;
+
+    int startPage = Math.Max(1, currentPage - maxPagesToShow / 2);
+    int endPage = startPage + maxPagesToShow - 1;
+
+    if (endPage > totalPages)
+    {
+        endPage = totalPages;
+        startPage = Math.Max(1, endPage - maxPagesToShow + 1);
+    }
+ 
+
+    <nav>
+        <ul class="pagination mt-3 flex-wrap">
+            <li class="page-item @(currentPage == 1 ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@(currentPage - 1)">&lt;</a>
+            </li>
+            <li class="page-item @(currentPage == 1 ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="1">Первая</a>
+            </li>
+            @for (int i = startPage; i <= endPage; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a href="#" class="page-link" data-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@totalPages">Последняя</a>
+            </li>
+            <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@(currentPage + 1)">&gt;</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+        @foreach (var word in Model.Words)
+        {
+            <div class="col">
+                <button type="button" class="btn btn-outline-success w-100">
+                    @word
+                </button>
+                @*                 <div class="border rounded p-2 text-center">
+                    @word
+                </div> *@
+            </div>
+        }
+    </div>
+
+    @* Постраничная навигация *@
+    
+
+@*     <nav>
+      <ul class="pagination mt-3">
+        @for (int i = 1; i <= totalPages; i++) {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+              <a href="#" class="page-link" data-page="@i">@i</a>
+            </li>
+        }
+      </ul>
+    </nav> *@
+    <nav>
+        <ul class="pagination mt-3 flex-wrap">
+            <li class="page-item @(currentPage == 1 ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@(currentPage - 1)">&lt;</a>
+            </li>
+            <li class="page-item @(currentPage == 1 ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="1">Первая</a>
+            </li>
+            @for (int i = startPage; i <= endPage; i++)
+            {
+                <li class="page-item @(i == currentPage ? "active" : "")">
+                    <a href="#" class="page-link" data-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@totalPages">Последняя</a>
+            </li>
+            <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
+                <a href="#" class="page-link" data-page="@(currentPage + 1)">&gt;</a>
+            </li>
+        </ul>
+    </nav>
+} else {
+    <p>Совпадений не найдено</p>
+}

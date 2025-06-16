@@ -14,8 +14,4 @@
     <ProjectReference Include="..\MnemonicBuilder.Domain\MnemonicBuilder.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
