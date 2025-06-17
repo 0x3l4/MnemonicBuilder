@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MnemonicBuilder.Domain.Entities;
 using MnemonicBuilder.Infrastructure.Entities;
 
-namespace MnemonicBuilder.Domain.Entities
+namespace MnemonicBuilder.Infrastructure.Entities
 {
     public class Sentence
     {

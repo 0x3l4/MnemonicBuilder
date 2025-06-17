@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MnemonicBuilder.Application.Utilities
+namespace MnemonicBuilder.Web.Extensions
 {
     public static class SessionExtensions
     {

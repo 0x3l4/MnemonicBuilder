@@ -44,6 +44,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);

@@ -4,7 +4,7 @@ namespace MnemonicBuilder.Web.Controllers
 {
     public class FlashcardController : Controller
     {
-        public IActionResult Index()
+        public IActionResult My()
         {
             return View();
         }
