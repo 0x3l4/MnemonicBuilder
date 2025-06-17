@@ -2,7 +2,7 @@
 
 @if (Model.Words != null && Model.Words.Any()) {
     int totalPages = (int)Math.Ceiling((double)Model.TotalCount / Model.PageSize);
-    int maxPagesToShow = 7;
+    int maxPagesToShow = 5;
     int currentPage = Model.CurrentPage;
 
     int startPage = Math.Max(1, currentPage - maxPagesToShow / 2);
@@ -18,7 +18,7 @@
     <nav>
         <ul class="pagination mt-3 flex-wrap">
             <li class="page-item @(currentPage == 1 ? "d-none" : "")">
-                <a href="#" class="page-link" data-page="@(currentPage - 1)">&lt;</a>
+                <a href="#" class="page-link" data-page="@(currentPage - 1)">&laquo;</a>
             </li>
             <li class="page-item @(currentPage == 1 ? "d-none" : "")">
                 <a href="#" class="page-link" data-page="1">Первая</a>
@@ -33,7 +33,7 @@
                 <a href="#" class="page-link" data-page="@totalPages">Последняя</a>
             </li>
             <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
-                <a href="#" class="page-link" data-page="@(currentPage + 1)">&gt;</a>
+                <a href="#" class="page-link" data-page="@(currentPage + 1)">&raquo;</a>
             </li>
         </ul>
     </nav>
@@ -42,7 +42,7 @@
         @foreach (var word in Model.Words)
         {
             <div class="col">
-                <button type="button" class="btn btn-outline-success w-100">
+                <button type="button" class="btn btn-outline-success word-btn w-100">
                     @word
                 </button>
             </div>
@@ -52,7 +52,7 @@
     <nav>
         <ul class="pagination mt-3 flex-wrap">
             <li class="page-item @(currentPage == 1 ? "d-none" : "")">
-                <a href="#" class="page-link" data-page="@(currentPage - 1)">&lt;</a>
+                <a href="#" class="page-link" data-page="@(currentPage - 1)">&laquo</a>
             </li>
             <li class="page-item @(currentPage == 1 ? "d-none" : "")">
                 <a href="#" class="page-link" data-page="1">Первая</a>
@@ -67,7 +67,7 @@
                 <a href="#" class="page-link" data-page="@totalPages">Последняя</a>
             </li>
             <li class="page-item @(currentPage == totalPages ? "d-none" : "")">
-                <a href="#" class="page-link" data-page="@(currentPage + 1)">&gt;</a>
+                <a href="#" class="page-link" data-page="@(currentPage + 1)">&raquo</a>
             </li>
         </ul>
     </nav>

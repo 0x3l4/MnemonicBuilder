@@ -19,7 +19,7 @@ namespace MnemonicBuilder.Infrastructure.Repositories
 
         public IEnumerable<string> SearchWords(string pattern, int skip, int take)
         {
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            var regex = new Regex(pattern);
             // Читаем файл строка за строкой, фильтруем по regex и делаем Skip/Take для пагинации
             return File.ReadLines(_filePath)
                        .Where(word => regex.IsMatch(word))
@@ -29,9 +29,8 @@ namespace MnemonicBuilder.Infrastructure.Repositories
 
         public int CountWords(string pattern)
         {
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            // Подсчитываем совпадения (может быть медленно для огромного файла, 
-            // но демонстративно показывает логику)
+            var regex = new Regex(pattern);
+
             return File.ReadLines(_filePath)
                        .Count(word => regex.IsMatch(word));
         }
