@@ -1,0 +1,37 @@
+﻿@model SetEditViewModel
+
+@{
+    ViewData["Title"] = "Редактировать набор";
+}
+
+<h2>Редактировать набор</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <h4>Выберите предложения</h4>
+    <div class="list-group">
+        @foreach (var sentence in Model.Sentences)
+        {
+            <label class="list-group-item">
+                <input type="checkbox"
+                       name="SelectedSentenceIds"
+                       value="@sentence.Id"
+                @(sentence.IsSelected ? "checked" : "") />
+                @sentence.Text
+            </label>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+</form>

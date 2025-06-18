@@ -1,0 +1,58 @@
+﻿@model List<MnemonicBuilder.Infrastructure.Entities.Set>
+
+@{
+    ViewData["Title"] = "Карточки";
+}
+
+<div class="container">
+    <h2 class="mb-4">Карточки других пользователей</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center text-muted">Карточек не найдено.</div>
+    }
+    else
+    {
+        <div class="row g-2 mt-3">
+            @foreach (var set in Model)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 my-2">
+                    <div class="card h-100 shadow">
+                        <div class="card-header text-truncate" title="@set.Title">
+                            <span class="text-muted">@set.CreatedAt.AddHours(5).ToString("g")</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title text-primary text-truncate">@set.Title</h6>
+                            <p class="card-text small flex-grow-1 overflow-hidden" style="height: 5rem; text-overflow: ellipsis;">
+                                @set.Description
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                             <a asp-action="Details" asp-route-id="@set.Id" class="btn btn-outline-primary w-100 btn-sm">
+                                Подробнее
+                            </a> 
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Детали набора</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div id="detailsContent">
+                    <p>Загрузка...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

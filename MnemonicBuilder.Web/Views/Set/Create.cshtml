@@ -1,0 +1,71 @@
+﻿@model CreateSetViewModel
+
+@{
+    ViewData["Title"] = "Создать новый набор";
+}
+
+<section>
+    <div class="container">
+        <h2 class="text-center">Создать новый набор</h2>
+        <form asp-action="Create"  method="post">
+            <div class="mb-3">
+                <label for="Title" class="form-label">Название</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="Description" class="form-label">Описание</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+
+            <div class="row g-2 mt-3">
+                @foreach (var sentence in Model.Sentences)
+                {
+                    <input type="hidden" name="Sentences[@Model.Sentences.IndexOf(sentence)].Id" value="@sentence.Id" />
+                    <input type="hidden" name="Sentences[@Model.Sentences.IndexOf(sentence)].Title" value="@sentence.Title" />
+                    <input type="hidden" name="Sentences[@Model.Sentences.IndexOf(sentence)].Text" value="@sentence.Text" />
+                    <div class="col-sm-6 col-md-4 col-lg-3 my-2">
+                        <div class="card h-100 border-info shadow">
+                            <div class="card-header text-truncate">
+                                <span class="text-muted">@sentence.Title</span>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <p class="card-text small flex-grow-1 overflow-hidden" style="height: 5rem; text-overflow: ellipsis;">
+                                    @sentence.Text
+                                </p>
+                            </div>
+                            <div class="card-footer btn-group">
+                                <input class="form-check-input" type="checkbox" asp-for="@sentence.IsSelected" value="true"
+                                       name="Sentences[@Model.Sentences.IndexOf(sentence)].IsSelected" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="my-3 form-check">
+                <input asp-for="IsPublic" type="checkbox" class="form-check-input" id="privacy-check" checked>
+                <label asp-for="IsPublic" class="form-check-label" for="privacy-check">Видно остальным пользователям</label>
+            </div>
+            @* <div class="mb-3">
+                <label class="form-label">Выберите предложения:</label>
+                <div class="form-check">
+                    @foreach (var sentence in Model.Sentences)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="@sentence.IsSelected" value="true"
+                                   name="Sentences[@Model.Sentences.IndexOf(sentence)].IsSelected" />
+                            <input type="hidden" name="Sentences[@Model.Sentences.IndexOf(sentence)].Id" value="@sentence.Id" />
+                            <input type="hidden" name="Sentences[@Model.Sentences.IndexOf(sentence)].Content" value="@sentence.Content" />
+                            <label class="form-check-label">@sentence.Content</label>
+                        </div>
+                    }
+                </div>
+            </div> *@
+
+            <button type="submit" class="btn btn-primary">Создать набор</button>
+        </form>
+    </div>
+</section>
+
+

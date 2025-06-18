@@ -4,10 +4,10 @@
 	ViewData["Title"] = "Создать предложение";
 }
 <section class="">
-	<div class="container">
+	<div class="container py-3">
 		<form asp-controller="Sentence" method="post">
 			<div class="row justify-content-center">
-				<h2 class="text-center">Строитель предложения</h2>
+				<h2 class="text-center py-3">Строитель предложения</h2>
 				<div class="col-md-6 col-lg-5 col-xxl-4">
 					<textarea asp-for="Text" id="sentenceInput" type="text" class="form-control h-100" rows="5"></textarea>
 				</div>
@@ -24,60 +24,11 @@
 								<button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
 									<i class="bi bi-question-circle"></i> Что такое регулярные выражения
 								</button>
-
-								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-lg modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Поиск слов с помощью регулярных выражений</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												<p>Вы можете искать слова из словаря, используя <strong>регулярные выражения</strong> — специальный язык для задания шаблонов.</p>
-
-												<p>Примеры шаблонов:</p>
-												<ul>
-													<li><code>^ко</code> — все слова, начинающиеся на «ко» (например, <em>кот, ковёр</em>)</li>
-													<li><code>ка$</code> — слова, заканчивающиеся на «ка» (например, <em>рука, строка</em>)</li>
-													<li><code>^п...а$</code> — пятибуквенные слова, начинающиеся на «п» и заканчивающиеся на «а» (например, <em>пена, пила</em>)</li>
-													<li><code>[жш]ка</code> — слова, содержащие «жка» или «шка»</li>
-													<li><code>^[а-я]{5}$</code> — все пятибуквенные слова, состоящие только из русских букв</li>
-												</ul>
-
-												<p>Полезные конструкции:</p>
-												<ul>
-													<li><code>.</code> — любой один символ</li>
-													<li><code>^</code> — начало слова</li>
-													<li><code>$</code> — конец слова</li>
-													<li><code>[абв]</code> — любая одна буква из набора</li>
-													<li><code>[^абв]</code> — любая буква, кроме указанных</li>
-													<li><code>{n}</code> — точно <em>n</em> повторений</li>
-													<li><code>{n,}</code> — не меньше <em>n</em> повторений</li>
-													<li><code>{n,m}</code> — от <em>n</em> до <em>m</em> повторений</li>
-												</ul>
-
-												<p><strong>Примеры поиска:</strong></p>
-												<ul>
-													<li><code>^раз.*ие$</code> — слова, начинающиеся на «раз» и заканчивающиеся на «ие» (<em>развитие</em>)</li>
-													<li><code>.*ст(о|а)в.*</code> — слова, содержащие «стов» или «став»</li>
-													<li><code>^[^аеиоуыэюя]{3}</code> — слова, начинающиеся с трёх согласных</li>
-												</ul>
-
-												<p class="mt-3"><strong>Важно:</strong> поиск чувствителен к регистру. Вводите шаблон в нижнем регистре, если хотите найти строчные слова.</p>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Понятно!</button>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
 
-				</div>
 				<div class="col-md-12 col-lg-10 col-xxl-8">
 					<div id="resultsContainer"></div> <!-- Здесь появятся результаты -->
 					<h2 class="text-center">Описание предложения</h2>
@@ -101,6 +52,52 @@
 	</div>
 </section>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-lg modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Поиск слов с помощью регулярных выражений</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>Вы можете искать слова из словаря, используя <strong>регулярные выражения</strong> — специальный язык для задания шаблонов.</p>
+
+				<p>Примеры шаблонов:</p>
+				<ul>
+					<li><code>^ко</code> — все слова, начинающиеся на «ко» (например, <em>кот, ковёр</em>)</li>
+					<li><code>ка$</code> — слова, заканчивающиеся на «ка» (например, <em>рука, строка</em>)</li>
+					<li><code>^п...а$</code> — пятибуквенные слова, начинающиеся на «п» и заканчивающиеся на «а» (например, <em>пена, пила</em>)</li>
+					<li><code>[жш]ка</code> — слова, содержащие «жка» или «шка»</li>
+					<li><code>^[а-я]{5}$</code> — все пятибуквенные слова, состоящие только из русских букв</li>
+				</ul>
+
+				<p>Полезные конструкции:</p>
+				<ul>
+					<li><code>.</code> — любой один символ</li>
+					<li><code>^</code> — начало слова</li>
+					<li><code>$</code> — конец слова</li>
+					<li><code>[абв]</code> — любая одна буква из набора</li>
+					<li><code>[^абв]</code> — любая буква, кроме указанных</li>
+					<li><code>{n}</code> — точно <em>n</em> повторений</li>
+					<li><code>{n,}</code> — не меньше <em>n</em> повторений</li>
+					<li><code>{n,m}</code> — от <em>n</em> до <em>m</em> повторений</li>
+				</ul>
+
+				<p><strong>Примеры поиска:</strong></p>
+				<ul>
+					<li><code>^раз.*ие$</code> — слова, начинающиеся на «раз» и заканчивающиеся на «ие» (<em>развитие</em>)</li>
+					<li><code>.*ст(о|а)в.*</code> — слова, содержащие «стов» или «став»</li>
+					<li><code>^[^аеиоуыэюя]{3}</code> — слова, начинающиеся с трёх согласных</li>
+				</ul>
+
+				<p class="mt-3"><strong>Важно:</strong> поиск чувствителен к регистру. Вводите шаблон в нижнем регистре, если хотите найти строчные слова.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Понятно!</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>

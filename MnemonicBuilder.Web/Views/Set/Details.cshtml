@@ -1,0 +1,35 @@
+﻿@using MnemonicBuilder.Infrastructure.Entities
+@model Set
+
+@{
+    ViewData["Title"] = "Детали набора";
+}
+
+<div class="container mt-4">
+
+    <h2>@Model.Title</h2>
+
+    <p><strong>Описание:</strong> @Model.Description</p>
+    <p><strong>Дата создания:</strong> @Model.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</p>
+
+    <h4 class="mt-4">Предложения:</h4>
+
+    @if (Model.SetSentences != null && Model.SetSentences.Any())
+    {
+        <ul class="list-group">
+            @foreach (var sentence in Model.SetSentences)
+            {
+                <li class="list-group-item">
+                    @sentence.Sentence.Text
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-info">В этом наборе пока нет предложений.</div>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary mt-3">Назад к списку</a>
+
+</div>

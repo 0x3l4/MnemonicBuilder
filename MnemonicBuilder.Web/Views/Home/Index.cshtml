@@ -2,16 +2,41 @@
 	ViewData["Title"] = "Главная";
 }
 
+<style>
+	.feature-card {
+		border: none;
+		border-radius: 1rem;
+		background: linear-gradient(145deg, #f8f9fa, #ffffff);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+		.feature-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		}
+
+	.feature-icon {
+		font-size: 2rem;
+		color: #0d6efd;
+		margin-bottom: 1rem;
+	}
+
+	.lead-subtitle {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+</style>
+
 <section class="bg-light pb-4">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="px-4 pt-5 my-5 text-center">
 				<img class="d-block mx-auto mb-4" src="~/images/app_logo.png" alt="" width="128" height="96">
-				<h1 class="display-5 fw-bold">Строитель мнемофраз</h1>
+				<h1 class="display-4 fw-bold">Строитель мнемофраз</h1>
 				<div class="col-lg-6 mx-auto">
 					<p class="lead mb-4">
-						Запоминайте слова легко.
-						Составляйте ассоциативные предложения и тренируйтесь с помощью карточек. Учите нужную вам информацию быстро.
+						Изучайте слова эффективно. Приложение объединяет регулярные выражения, карточки и мнемонику для быстрого и надёжного запоминания слов.
 					</p>
 					<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 						<a asp-controller="Sentence" asp-action="Create" class="btn btn-primary btn-lg px-4 gap-3">Начать бесплатно</a>
@@ -33,29 +58,25 @@
 							<div class="carousel-item active">
 								<img src="~/images/languages.png" class="d-block w-100" alt="">
 								<div class="carousel-caption d-none d-sm-block">
-									<h5>Орфография</h5>
-									<p>Падежи, ударения, слоги</p>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img src="~/images/hobby.png" class="d-block w-100" alt="">
-								<div class="carousel-caption d-none d-sm-block">
-									<h5>Наше окружение</h5>
-									<p>Цвета радуги, планеты, </p>
+								<h5 class="mark mb-4 p-2">Орфография</h5>
 								</div>
 							</div>
 							<div class="carousel-item">
 								<img src="~/images/math.png" class="d-block w-100" alt="">
 								<div class="carousel-caption d-none d-sm-block">
-									<h5>Точные науки</h5>
-									<p>Математические константы, геометрия</p>
+								<h5 class="mark mb-4 p-2">Точные науки</h5>
 								</div>
 							</div>
+						<div class="carousel-item">
+							<img src="~/images/planets.png" class="d-block w-100" alt="">
+							<div class="carousel-caption d-none d-sm-block">
+								<h5 class="mark mb-4 p-2">Наше окружение</h5>
+							</div>
+						</div>
 							<div class="carousel-item">
 								<img src="~/images/hobby.png" class="d-block w-100" alt="">
 								<div class="carousel-caption d-none d-sm-block">
-									<h5>Хобби</h5>
-									<p>Сборка Кубика Рубика вслепую, шахматы</p>
+								<h5 class="mark mb-4 p-2">Хобби</h5>
 								</div>
 							</div>
 						</div>
@@ -70,66 +91,81 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
 
 </section>
 
-<section>
+<section class="p-4 m-4">
 	<div class="container">
-		<div class="row">
-			<h2></h2>
+		<div class="text-center mb-5">
+			<h1 class="display-6 fw-bold">Изучайте слова эффективно</h1>
+			<p class="lead text-muted lead-subtitle">
+				Приложение объединяет регулярные выражения, карточки и мнемонику для быстрого и надёжного запоминания слов.
+			</p>
 		</div>
-	</div>
-</section>
 
-<section>
-	<div class="container">
-		<div class="row justify-content-center">
-			<h2>Как это работает?</h2>
-			<ol>
-				<li>Введите слово</li>
-				<li>Получите мнемоническое предложение</li>
-				<li>Запомните с помощью карточек</li>
-			</ol>
-		</div>
-	</div>
-</section>
-
-<section>
-	<div class="container">
-		<div class="row justify-content-center">
-			<h2>Почему это работает?</h2>
-			<ul>
-				<li>Мнемоника помогает запоминать быстрее</li>
-				<li>Связывает слова с образами и эмоциями</li>
-				<li>Карточки усиливают долговременную память</li>
-			</ul>
-		</div>
-	</div>
-</section>
-
-<section class="features">
-	<div class="container">
-		<div class="row justify-content-center">
-			<h2>Что вы получаете</h2>
-			<ul>
-				<li>Генерация мнемонических предложений</li>
-				<li>Flashcards с интервальным повторением</li>
-				<li>Добавление собственных ассоциаций</li>
-			</ul>
-		</div>
-	</div>
-</section>
-
-<section>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12">
-				<h2>Готовы попробовать?</h2>
-				<a asp-controller="Sentence" asp-action="Create" class="btn btn-primary">Перейти к созданию</a>
+		<div class="row g-4">
+			<!-- Поиск по регулярному выражению -->
+			<div class="col-md-6 col-lg-6">
+				<div class="card feature-card p-4 h-100">
+					<div class="card-body">
+						<div class="feature-icon text-primary">
+							<i class="bi bi-search"></i>
+						</div>
+						<h5 class="card-title fw-semibold">Поиск по регулярному выражению</h5>
+						<p class="card-text text-muted">
+							Используйте шаблоны для точного поиска слов: по началу, окончанию или содержимому.
+							<br><small class="text-body-secondary">Пример: <code>^при.*ние$</code></small>
+						</p>
+					</div>
+				</div>
 			</div>
 
+			<!-- Метод карточек -->
+			<div class="col-md-6 col-lg-6">
+				<div class="card feature-card p-4 h-100">
+					<div class="card-body">
+						<div class="feature-icon text-primary">
+							<i class="bi bi-journal-text"></i>
+						</div>
+						<h5 class="card-title fw-semibold">Метод запоминания карточками</h5>
+						<p class="card-text text-muted">
+							Повторение с помощью флеш-карточек ускоряет запоминание.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Мнемофразы -->
+			<div class="col-md-6 col-lg-6">
+				<div class="card feature-card p-4 h-100">
+					<div class="card-body">
+						<div class="feature-icon text-primary">
+							<i class="bi bi-lightbulb"></i>
+						</div>
+						<h5 class="card-title fw-semibold">Мнемофразы от пользователей</h5>
+						<p class="card-text text-muted">
+							Добавляйте собственные ассоциации для слов и смотрите идеи других. Чем ярче фраза, тем крепче в памяти!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Создание карточек -->
+			<div class="col-md-6 col-lg-6">
+				<div class="card feature-card p-4 h-100">
+					<div class="card-body">
+						<div class="feature-icon text-primary">
+							<i class="bi bi-pencil-square"></i>
+						</div>
+						<h5 class="card-title fw-semibold">Создание собственных карточек</h5>
+						<p class="card-text text-muted">
+							Вносите нужные вам слова, переводы и примеры. Персонализируйте обучение под свои цели.
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

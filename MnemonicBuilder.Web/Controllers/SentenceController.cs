@@ -45,6 +45,17 @@ namespace MnemonicBuilder.Web.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Public()
+        {
+            var publicSentences = await _context.Sentences
+                .Where(s => s.IsPublic)
+                .OrderByDescending(s => s.CreatedAt)
+                .ToListAsync();
+
+            return View(publicSentences);
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             var model = HttpContext.Session.Get<CreateSentenceViewModel>(SentenceFormSessionKey)

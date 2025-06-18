@@ -10,10 +10,9 @@ namespace MnemonicBuilder.Infrastructure.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }  // Название набора
-        public string Text { get; set; }  // Название набора
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
+        public bool IsPublic { get; set; }
         // Привязка к пользователю
         public string UserId { get; set; }
         public User User { get; set; }
